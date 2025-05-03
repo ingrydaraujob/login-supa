@@ -123,10 +123,7 @@ export default function Login() {
           </form>
         </div>
 
-        {/* Rodapé */}
-        <div className="mt-6 text-center text-xs text-gray-500/80">
-          <p>Autenticação segura com Supabase</p>
-        </div>
+        
       </div>
     </div>
   );
