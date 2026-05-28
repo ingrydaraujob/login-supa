@@ -1,60 +1,208 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Design System */
+:root {
+  --primary: #3B82F6;
+  --primary-dark: #1E40AF;
+  --primary-light: #DBEAFE;
+  --secondary: #8B5CF6;
+  --secondary-dark: #6D28D9;
+  --accent: #EC4899;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --neutral-900: #0F172A;
+  --neutral-800: #1E293B;
+  --neutral-700: #334155;
+  --neutral-600: #475569;
+  --neutral-400: #94A3B8;
+  --neutral-300: #CBD5E1;
+}
 
 /* Estilos base */
-:root {
-  --primary-color: #3B82F6;
-  --primary-dark: #1E3A8A;
-  --primary-light: #93C5FD;
-  --secondary-color: #8B5CF6;
-  --secondary-dark: #5B21B6;
-  --secondary-light: #C4B5FD;
-  --text-dark: #1F2937;
-  --text-medium: #4B5563;
-  --text-light: #E5E7EB;
-  --success: #10B981;
-  --error: #EF4444;
-  --background-gradient-start: #0f172a;
-  --background-gradient-end: #1e3a8a;
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Estilos globais */
 body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--neutral-900);
   color: white;
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 400;
 }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
 
 /* Animações */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Melhorias de acessibilidade */
-input:focus, button:focus, a:focus {
-  outline: 2px solid var(--primary-light);
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.5); }
+}
+
+.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+.animate-slide-left { animation: slideInLeft 0.5s ease-out forwards; }
+.animate-slide-right { animation: slideInRight 0.5s ease-out forwards; }
+.animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* Entrada gradual */
+.stagger-child {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Backgrounds decorativos */
+.bg-gradient-premium {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+}
+
+/* Cards e containers */
+.card-glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  border-radius: 1.5rem;
+}
+
+.card-glass:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(51, 65, 85, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Inputs modernos */
+input, textarea, select {
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1.5px solid rgba(51, 65, 85, 0.4);
+  border-radius: 0.75rem;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: rgba(148, 163, 184, 0.5);
+}
+
+input:focus, textarea:focus, select:focus {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Botões modernos */
+button {
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+/* Links modernos */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Acessibilidade */
+button:focus, input:focus, a:focus {
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
-/* Melhorias de responsividade */
-@media (max-width: 640px) {
-  .min-h-screen {
-    padding: 1rem;
-  }
-  
-  h1 {
-    font-size: 1.75rem !important;
-  }
-  
-  p {
-    font-size: 1rem !important;
-  }
+/* Scrollbar customizado */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
   
   input, button {
     padding-top: 0.75rem !important;
@@ -62,33 +210,17 @@ input:focus, button:focus, a:focus {
   }
 }
 
-/* Melhorias de contraste */
-.text-blue-100 {
-  color: #E0F2FE !important; /* Azul mais claro para melhor contraste */
-}
-
-.text-blue-300 {
-  color: #7DD3FC !important; /* Azul mais brilhante para links */
-}
-
 /* Efeitos de hover mais suaves */
 button:hover, a:hover {
   transition: all 0.3s ease;
 }
 
-/* Efeito de pulsação para o ícone */
+/* Efeito de pulsação */
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
-.w-20.h-20 {
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Melhorias para o formulário */
-.placeholder-blue-200\/50::placeholder {
-  color: rgba(191, 219, 254, 0.5);
-  opacity: 1;
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
